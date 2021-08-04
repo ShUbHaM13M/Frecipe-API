@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Frecipe Recipe API</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+	<link rel="stylesheet" href="{{url_for('static', path='/style.css')}}">	
+	<script defer src="{{url_for('static', path='/app.js')}}"></script>
+</head>
+<body>
+	<header class="container">
+		<nav class="navbar" role="navigation" aria-label="main navigation">
+			<div class="navbar-brand is-align-items-center">
+				<h2 class="title navbar-item m-0">Frecipe</h2>
+				<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+				</a>
+			</div>
+
+			<div id="navbar-menu" class="navbar-menu">
+				<div class="navbar-end">
+					<div class="navbar-item"><a class="button" href="/redoc">Documentation</a></div>
+					<div class="navbar-item"><a class="button primary" id="register-btn">Get Your API token</a></div>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<main class="section">
+		<div class="container">
+			<div class="columns is-vcentered">
+			<div class="column is-2"></div>
+			<div class="column">
+				<img style="margin: 0 auto;" 
+				class="image is-128x128" 
+				src="{{url_for('static', path='imgs/logo.svg')}}" 
+				alt="Frecipe Logo"
+				title="Frecipe Logo">
+			</div>
+			<div class="column is-7">
+				<h2 class="title">Frecipe Recipe API:</h2>
+				<p>
+					Frecipe is a free recipe API which serves recipes from a database and makes them accessible via HTTP APIs.
+					Currently, it has more than 9500+ recipes, with more being added ocassionally.
+					Web/Mobile apps can use the Frecipe API to get recipes easily.
+				</p>
+				<p class="has-text-info">*Note: API has a rate-limit of - 
+					<strong class="has-text-info">5 requests / minute</strong> <br>
+					(while in the testing phase) </p>
+			</div>
+			<div class="column is-1"></div>
+		</div>
+
+		<div class="section">
+			<div class="columns">
+				<div class="column">
+					<h3 class="title is-3">How does the Frecipe API work ?</h3>
+					<p>
+						If You want to use the Frecipe API in Your project, You can check out the
+						<a href="/redoc" class="is-link">Documentation</a> or
+						<a href="/docs" class="is-link-dark">Alternative doc link</a>
+					</p>
+					<p>
+						Example: 
+					</p>
+					<div class="code">
+						<div>
+							<code id="curl">
+								curl --header "Authorization: Token YOUR_TOKEN" {{ request.url }}api/recipes/?limit=2&skip=2
+							</code>
+						</div>
+						<div class="is-hidden">
+							<pre>const url = "{{ request.url }}api/recipes/?limit=2&skip=2"
+const options = {
+ "method": 'GET',
+ "headers": {
+ "Authorization": "Token YOUT_TOKEN"
+ }
+}
+fetch(url, options)
+ .then(response => response.json())
+ .then(data => console.log(data))
+ .catch(err => console.log(err.message))</pre>
+						</div>
+					</div>
+					<div class="tabs is-centered is-toggle">
+						<ul>
+							<li class="is-active"><a href="">cURL</a></li>
+							<li><a href="">JavaScript</a></li>
+						</ul>
+					</div>
+					<p>As You have noticed from the example above, 
+						You need to have an API Token to be able to use the Frecipe API.</p>
+					<div style="margin: 1em 0;" onclick="toggleForm()">
+						<a class="button primary" id="register-btn">Get Your API token</a>
+					</div>
+				</div>
+				<div class="column"></div>
+			</div>
+		</div>
+
+	</main>
+
+	<div id="register-form" class="modal">
+		<div class="modal-background"></div>
+		<form class="modal-content">
+			<div class="form p-3">
+				<div class="title is-size-5 is-flex m-0 has-text-centered">
+					<h2 class="is-flex-grow-1">Register for a token</h2>
+					<!-- <span class="is-clickable" id="close-btn" onclick="toggleForm()">&times;</span> -->
+					<button class="modal-close is-large" onclick="toggleForm()" aria-label="close"></button>
+				</div>
+				<div class="divider"></div>
+				<div class="is-flex input-fields">
+					<input class="input field m-0" type="email" name="email" required placeholder="Enter Your email address" />
+					<button class="button register-btn" id="submit-btn" type="submit">
+						Register
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<article class="message is-hidden"></article>
+
+</body>
+</html>
