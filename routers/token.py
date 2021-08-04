@@ -57,9 +57,17 @@ async def send_token(request: Request):
 			sender_email='shubham.heeralal@gmail.com', 
 			recipient=email,
 			mail={
-				'Subject': 'mail test',
-				'text': f'Your API Token: {token}',
-				'html': f'Your API Token: {token}'
+				'Subject': 'Frecipe API Token',
+				'text': f"""Hey,
+				\n glad to have You onboard, 
+				\n here is Your API Token: {token}. 
+				\n Goodluck ✌🏽 
+				\n if You did'nt request then You can ignore this mail.""",
+				'html': f"""Hey,
+				<br> glad to have You onboard, 
+				<br> here is Your API Token: <strong>{token}</strong>. 
+				<br> Goodluck ✌🏽 
+				<br> <em> if You did'nt request then You can ignore this mail. </em>"""
 			})
 		return {
 			'type': 'success', 

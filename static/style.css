@@ -68,6 +68,14 @@ li.is-active > a {
   border-color: var(--blue) !important;
 }
 
+.message {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid currentColor;
+}
+
 @media screen and (max-width: 1023px) {
   .navbar-item {
     display: flex;
