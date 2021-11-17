@@ -25,6 +25,7 @@ class RecipeModel(BaseModel):
 	title: str = Field(...)
 	slug: Optional[str] = Field()
 	info: List[Dict[str, str]] = Field(...)
+	image: str = Field(...)
 	ingredients: List[str] = Field(...)
 	directions: List[str] = Field(...)
 
@@ -39,6 +40,7 @@ class RecipeModel(BaseModel):
 					{"header": "total", "body": '1 hr'},
 					{"header": "Servings", "body": '4'}
 				],
+				"image": "image_url.jpg",
 				"ingredients": [
 					"1 small seedless watermelon, red or yellow, quartered and cut into 1-inch-thick wedges",
 					"1 cup sugar",
